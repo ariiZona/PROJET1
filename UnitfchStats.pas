@@ -19,6 +19,7 @@ type
                                 finales de chaque élève du groupe}
 
     NbElevesSta : integer; // le nombre d'élèves dans le groupe
+
   public
     { Déclarations publiques }
   end;
