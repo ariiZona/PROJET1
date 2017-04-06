@@ -2,14 +2,11 @@ unit UnitDeclarations;
 
 interface
 
-implementation
-
-  uses  UnitfchOptionsTri, UnitfchAjout, UnitfchSuppression,
-        UnitfchStats;
-
 const
 NB_MAX_ELEVES = 25; (* Nombre maximum d'élèves *)
 NB_EVAL = 4;
+
+implementation
 
 type
 TTabNomsEleves = array [0..NB_MAX_ELEVES-1] of string;

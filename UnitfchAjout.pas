@@ -4,16 +4,16 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ComCtrls, UnitDeclarations;
+  Dialogs, ComCtrls, StdCtrls, UnitDeclarations, UnitUtils;
 
 type
   TfchAjout = class(TForm)
-    txtNom: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    txtNom: TEdit;
     txtEval1: TEdit;
     txtEval2: TEdit;
     txtEval3: TEdit;
