@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Buttons, ComCtrls, ExtCtrls, Grids, UnitDeclarations;
+  Dialogs, Buttons, ComCtrls, ExtCtrls, Grids, UnitDeclarations, UnitUtils,
+  UnitfchOptionsTri, UnitfchAjout, UnitfchSuppression, UnitfchStats;
 
 type
   TfchPrinc = class(TForm)
@@ -24,6 +25,21 @@ type
 
   private
     { Déclarations privées }
+
+    TabNomsPri : TTabNomsEleves; {un tableau de noms de chacun des élèves du
+                                 groupe}
+    TabEvalPri : TTabLesEval; {2D un tableau des notes des évaluations et
+                               notes finales de chaque élève groupe  }
+
+    TabIndexPri : TTabLesIndex; {un tableau des tableaux d'index pour chacune
+                                 es clés de tri }
+
+    NbElevesPri : integer; // le nombre d'élèves actuellement dans le groupe
+
+    CleTriPri : integer; //la clé de tri courants
+
+    OrdreTriPri : boolean; // l'ordre de tri courants
+
   public
     { Déclarations publiques }
   end;
@@ -32,8 +48,6 @@ var
   fchPrinc: TfchPrinc;
 
 implementation
-
-uses UnitfchAjout, UnitfchOptionsTri, UnitfchSuppression, UnitfchStats;
 
 {$R *.dfm}
 

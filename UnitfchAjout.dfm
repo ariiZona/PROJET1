@@ -2,8 +2,8 @@ object fchAjout: TfchAjout
   Left = 0
   Top = 0
   Caption = 'fchAjout'
-  ClientHeight = 234
-  ClientWidth = 294
+  ClientHeight = 233
+  ClientWidth = 287
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -93,7 +93,7 @@ object fchAjout: TfchAjout
     Top = 176
     Width = 75
     Height = 25
-    Caption = 'cmdConfirmer'
+    Caption = 'Confirmer'
     TabOrder = 5
   end
   object cmdAnnuler: TButton
@@ -101,13 +101,13 @@ object fchAjout: TfchAjout
     Top = 176
     Width = 75
     Height = 25
-    Caption = 'cmdAnnuler'
+    Caption = 'Annuler'
     TabOrder = 6
   end
   object fchAjout: TStatusBar
     Left = 0
-    Top = 215
-    Width = 294
+    Top = 214
+    Width = 287
     Height = 19
     Panels = <
       item
@@ -123,8 +123,7 @@ object fchAjout: TfchAjout
       item
         Width = 50
       end>
-    ExplicitLeft = 152
-    ExplicitTop = 136
-    ExplicitWidth = 0
+    ExplicitTop = 215
+    ExplicitWidth = 294
   end
 end

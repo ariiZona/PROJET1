@@ -57,7 +57,7 @@ object fchOptionsTri: TfchOptionsTri
     Top = 152
     Width = 75
     Height = 25
-    Caption = 'cmdOK'
+    Caption = 'OK'
     TabOrder = 2
   end
   object cmdAnnuler: TButton
@@ -65,7 +65,7 @@ object fchOptionsTri: TfchOptionsTri
     Top = 152
     Width = 75
     Height = 25
-    Caption = 'cmdAnnuler'
+    Caption = 'Annuler'
     TabOrder = 3
   end
 end

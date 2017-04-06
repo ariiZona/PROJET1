@@ -49,16 +49,17 @@
 			<DCCReference Include="UnitfchOptionsTri.pas">
 				<Form>fchOptionsTri</Form>
 			</DCCReference>
-			<DCCReference Include="UnitfchAjout.pas">
-				<Form>fchAjout</Form>
-			</DCCReference>
 			<DCCReference Include="UnitfchSuppression.pas">
 				<Form>fchSuppression</Form>
 			</DCCReference>
 			<DCCReference Include="UnitfchStats.pas">
 				<Form>fchStats</Form>
 			</DCCReference>
+			<DCCReference Include="UnitUtils.pas"/>
 			<DCCReference Include="UnitDeclarations.pas"/>
+			<DCCReference Include="UnitfchAjout.pas">
+				<Form>fchAjout</Form>
+			</DCCReference>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

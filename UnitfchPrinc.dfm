@@ -35,9 +35,6 @@ object fchPrinc: TfchPrinc
     Height = 41
     Align = alTop
     TabOrder = 1
-    ExplicitLeft = 128
-    ExplicitTop = 144
-    ExplicitWidth = 185
     object otlTrier: TSpeedButton
       Left = 8
       Top = 8
@@ -97,8 +94,5 @@ object fchPrinc: TfchPrinc
       item
         Width = 50
       end>
-    ExplicitLeft = 216
-    ExplicitTop = 152
-    ExplicitWidth = 0
   end
 end

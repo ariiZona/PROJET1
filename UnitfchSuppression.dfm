@@ -33,7 +33,7 @@ object fchSuppression: TfchSuppression
     Top = 255
     Width = 121
     Height = 25
-    Caption = 'cmdSupprimer'
+    Caption = 'Supprimer'
     TabOrder = 1
   end
 end

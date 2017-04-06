@@ -4,10 +4,11 @@ uses
   Forms,
   UnitfchPrinc in 'UnitfchPrinc.pas' {fchPrinc},
   UnitfchOptionsTri in 'UnitfchOptionsTri.pas' {fchOptionsTri},
-  UnitfchAjout in 'UnitfchAjout.pas' {fchAjout},
   UnitfchSuppression in 'UnitfchSuppression.pas' {fchSuppression},
   UnitfchStats in 'UnitfchStats.pas' {fchStats},
-  UnitDeclarations in 'UnitDeclarations.pas';
+  UnitUtils in 'UnitUtils.pas',
+  UnitDeclarations in 'UnitDeclarations.pas',
+  UnitfchAjout in 'UnitfchAjout.pas' {fchAjout};
 
 {$R *.res}
 
@@ -16,8 +17,8 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfchPrinc, fchPrinc);
   Application.CreateForm(TfchOptionsTri, fchOptionsTri);
-  Application.CreateForm(TfchAjout, fchAjout);
   Application.CreateForm(TfchSuppression, fchSuppression);
   Application.CreateForm(TfchStats, fchStats);
+  Application.CreateForm(TfchAjout, fchAjout);
   Application.Run;
 end.

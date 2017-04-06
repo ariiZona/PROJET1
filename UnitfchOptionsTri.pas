@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, UnitDeclarations;
+  Dialogs, StdCtrls, UnitDeclarations, UnitUtils;
 
 type
   TfchOptionsTri = class(TForm)
@@ -17,6 +17,11 @@ type
     cmdAnnuler: TButton;
   private
     { Déclarations privées }
+
+    CleTriOpt : integer; // la clé de tri des informations sur les élèves
+
+    OrdreTriOpt : Boolean; // l'ordre de tri des informations sur les élèves
+
   public
     { Déclarations publiques }
   end;
