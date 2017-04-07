@@ -20,6 +20,7 @@ object fchPrinc: TfchPrinc
     Height = 201
     FixedCols = 0
     RowCount = 2
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect]
     TabOrder = 0
     ColWidths = (
       192

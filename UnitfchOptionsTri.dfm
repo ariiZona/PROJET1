@@ -28,7 +28,7 @@ object fchOptionsTri: TfchOptionsTri
     ItemHeight = 13
     TabOrder = 0
   end
-  object GroupBox1: TGroupBox
+  object grpOrdresTri: TGroupBox
     Left = 176
     Top = 24
     Width = 121
