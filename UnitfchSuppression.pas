@@ -18,7 +18,7 @@ type
                                   groupe}
 
     TabEvalSup : TTabLesEval; {Un tableau 2D des notes des évaluations et notes
-                               finales de chaque élève du groupe}
+                                 finales de chaque élève du groupe}
 
     NbElevesSup : integer; // le nombre d'élèves dans le groupe
 
