@@ -36,7 +36,7 @@ type
 
     NbElevesPri : integer; // le nombre d'élèves actuellement dans le groupe
 
-    CleTriPri : integer; //la clé de tri courants
+    CleTriPri : integer; // la clé de tri courants
 
     OrdreTriPri : boolean; // l'ordre de tri courants
 
