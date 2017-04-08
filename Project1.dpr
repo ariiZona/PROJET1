@@ -14,7 +14,7 @@ uses
 
 begin
   Application.Initialize;
-  Application.MainFormOnTaskbar := True;
+ // Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfchPrinc, fchPrinc);
   Application.CreateForm(TfchOptionsTri, fchOptionsTri);
   Application.CreateForm(TfchSuppression, fchSuppression);

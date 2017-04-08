@@ -1,9 +1,9 @@
 object fchStats: TfchStats
-  Left = 0
-  Top = 0
+  Left = 195
+  Top = 445
+  Width = 325
+  Height = 206
   Caption = 'fchStats'
-  ClientHeight = 168
-  ClientWidth = 309
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -26,6 +26,7 @@ object fchStats: TfchStats
     Width = 133
     Height = 129
     ColCount = 6
+    Enabled = False
     RowCount = 6
     ScrollBars = ssNone
     TabOrder = 0

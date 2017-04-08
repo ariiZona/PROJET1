@@ -1,9 +1,9 @@
 object fchOptionsTri: TfchOptionsTri
-  Left = 0
-  Top = 0
+  Left = 707
+  Top = 415
+  Width = 342
+  Height = 225
   Caption = 'Options de tri'
-  ClientHeight = 198
-  ClientWidth = 326
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -58,6 +58,7 @@ object fchOptionsTri: TfchOptionsTri
     Width = 75
     Height = 25
     Caption = 'OK'
+    ModalResult = 1
     TabOrder = 2
   end
   object cmdAnnuler: TButton
@@ -66,6 +67,7 @@ object fchOptionsTri: TfchOptionsTri
     Width = 75
     Height = 25
     Caption = 'Annuler'
+    ModalResult = 2
     TabOrder = 3
   end
 end

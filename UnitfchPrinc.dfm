@@ -1,9 +1,9 @@
 object fchPrinc: TfchPrinc
-  Left = 0
-  Top = 0
+  Left = 189
+  Top = 122
+  Width = 506
+  Height = 320
   Caption = 'Gestion des notes d'#39#233'l'#232'ves'
-  ClientHeight = 282
-  ClientWidth = 473
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -32,7 +32,7 @@ object fchPrinc: TfchPrinc
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 473
+    Width = 490
     Height = 41
     Align = alTop
     TabOrder = 1
@@ -79,7 +79,7 @@ object fchPrinc: TfchPrinc
   object staNbEleves: TStatusBar
     Left = 0
     Top = 263
-    Width = 473
+    Width = 490
     Height = 19
     Panels = <
       item
@@ -95,5 +95,6 @@ object fchPrinc: TfchPrinc
       item
         Width = 50
       end>
+    SimplePanel = False
   end
 end

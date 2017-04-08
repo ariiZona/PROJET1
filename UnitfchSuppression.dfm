@@ -1,9 +1,9 @@
 object fchSuppression: TfchSuppression
-  Left = 0
-  Top = 0
+  Left = 1057
+  Top = 132
+  Width = 206
+  Height = 333
   Caption = 'fchSuppression'
-  ClientHeight = 295
-  ClientWidth = 173
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -26,6 +26,7 @@ object fchSuppression: TfchSuppression
     Width = 121
     Height = 225
     ItemHeight = 13
+    Sorted = True
     TabOrder = 0
   end
   object cmdSupprimer: TButton

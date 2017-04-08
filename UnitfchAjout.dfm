@@ -1,9 +1,9 @@
 object fchAjout: TfchAjout
-  Left = 0
-  Top = 0
+  Left = 690
+  Top = 123
+  Width = 320
+  Height = 268
   Caption = 'fchAjout'
-  ClientHeight = 233
-  ClientWidth = 287
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -106,8 +106,8 @@ object fchAjout: TfchAjout
   end
   object fchAjout: TStatusBar
     Left = 0
-    Top = 214
-    Width = 287
+    Top = 211
+    Width = 304
     Height = 19
     Panels = <
       item
@@ -123,7 +123,6 @@ object fchAjout: TfchAjout
       item
         Width = 50
       end>
-    ExplicitTop = 215
-    ExplicitWidth = 294
+    SimplePanel = False
   end
 end

@@ -5,7 +5,8 @@ interface
 uses Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
 Dialogs, Buttons, ComCtrls, ExtCtrls, Grids, UnitDeclarations;
 
-//                        4 l'UNITÉ DES uTILITAIRES                           //
+
+//                        4 l'UNITÉ DES UTILITAIRES                           //
 
 Procedure CalculerNotesFinales (var tabLesEval : TTabLesEval; tabPctEval :
 TTabPctEval);
@@ -174,8 +175,8 @@ begin
       for indEtu2 := high(tabLesEval[indEval]) downto indEtu + 1  do
       begin
 
-        if tabLesEval[tabLesIndex[indEval][indEtu]] >
-           tabLesEval[tabLesIndex[indEval][indEtu2]] then
+        if tabLesEval[tabLesIndex[indEval][indEtu]][indEtu] >
+           tabLesEval[tabLesIndex[indEval][indEtu2]][indEtu2] then
 
           // Déterminer l'indice de la plus petit valeur
           Transit := tabLesIndex[indEval][indEtu2];
@@ -209,7 +210,7 @@ begin
     iMin := indEtu;
     for indEtu2 := indEtu + 1 to high(tabLesEval) do
     begin
-      if tabLesEval[5][tabLesIndex[5][iMin]] > tabLesEval[5][tabLesIndex[5][indEtu2]]
+      if tabLesEval[4][tabLesIndex[5][iMin]] > tabLesEval[4][tabLesIndex[5][indEtu2]]
       then
       begin
         iMin := indEtu2;
