@@ -3,7 +3,7 @@ unit UnitUtils;
 interface
 
 uses Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-Dialogs, Buttons, ComCtrls, ExtCtrls, Grids, UnitDeclarations;
+Dialogs, Buttons, ComCtrls, ExtCtrls, Grids, UnitDeclarations, Math;
 
 
 //                        4 l'UNITÉ DES UTILITAIRES                           //
@@ -316,6 +316,91 @@ begin
   //Mettre à jour le tableau d'index des notes finales des élèves.
   TrierTabFinal(TabLesIndex, TabLesEval);
 
+end;
+
+function CalculerMoyTabEntPos (TabEnt: array of integer): single;
+//
+var
+  Somme,
+  indI: integer;
+
+begin
+  Somme := 0;
+
+  if Length(TabEnt) < 1 then
+    Result := -1
+  else
+    begin
+      for indI := Low(TabEnt) to High(TabEnt) do
+        Somme := Somme + TabEnt[indI];
+
+      Result := Somme / Length(TabEnt);
+    end;
+end;
+
+function CalculerEcartTabEnt (TabEnt: array of integer): single;
+//
+var
+  indI,
+  Somme: integer;
+  Variance: single;
+
+begin
+  Somme := 0;
+
+  if Length(TabEnt) < 1 then
+    Result := -1
+  else
+    begin
+      for indI := Low(TabEnt) to High(TabEnt) do
+        Somme := Somme + (TabEnt[indI] - CalculerMoyTabEntPos(TabEnt));
+
+        Variance := Power(Somme, 2) / Length(TabEnt);
+        Result := Sqrt(Variance);
+    end;
+end;
+
+function DeterminerMinTabEntPos (TabEnt: array of integer): integer;
+//Trouver et retourner la valeur min d'un tableau d'entiers
+var
+  ValMin,              //Valeur min trouvée
+  indI: integer;     //Indice
+
+begin
+  ValMin := 100;  //lolwut
+
+  if Length(TabEnt) < 1 then
+    Result := -1
+  else
+    begin
+      for indI := High(TabEnt) downto Low(TabEnt) do  //Parcourir le tableau
+        if TabEnt[indI] < ValMin then
+          ValMin := TabEnt[indI];
+
+      Result := ValMin
+    end;
+end;
+
+function DeterminerMaxTabEntPos (TabEnt: array of integer): integer;
+//Trouver et retourner la valeur max d'un tableau d'entiers
+var
+  ValMax,              //Valeur max trouvée
+  indI: integer;       //Indice
+
+begin
+  ValMax := 0;  //Si le tableau est vide, il ne contient que des 0
+
+
+  if Length(TabEnt) < 1 then
+    Result := -1
+  else
+    begin
+      for indI := Low(TabEnt) to High(TabEnt) do  //Parcourir le tableau
+        if TabEnt[indI] > ValMax then
+          ValMax := TabEnt[indI];
+
+      Result := ValMax
+    end;
 end;
 
 end.
