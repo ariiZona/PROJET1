@@ -3,10 +3,9 @@ unit UnitUtils;
 interface
 
 uses Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-Dialogs, Buttons, ComCtrls, ExtCtrls, Grids, UnitDeclarations;
+Dialogs, Buttons, ComCtrls, ExtCtrls, Grids, UnitDeclarations, Math;
 
-
-//                        4 l'UNIT… DES UTILITAIRES                           //
+//                        4 l'UNIT√â DES UTILITAIRES                           //
 
 Procedure CalculerNotesFinales (var tabLesEval : TTabLesEval);
 
@@ -26,31 +25,39 @@ TTabLesEval);
 
 Procedure MettreAJourLesIndex();
 
+function CalculerMoyTabEntPos (TabEnt: array of integer): single;
+
+function CalculerEcartTabEnt (TabEnt: array of integer): single;
+
+function DeterminerMinTabEntPos (TabEnt: array of integer): integer;
+
+function DeterminerMaxTabEntPos (TabEnt: array of integer): integer;
+
 implementation
 
 Procedure CalculerNotesFinales (var tabLesEval : TTabLesEval);
-{Objectif : Calculer les notes finales de chacun des ÈlËves du groupe.}
+{Objectif : Calculer les notes finales de chacun des √©l√®ves du groupe.}
 
 Var
-  indEtu,            // Indice de l'Ètudiant
-  indEval : integer; // indice de l'Èvaluation
+  indEtu,            // Indice de l'√©tudiant
+  indEval : integer; // indice de l'√©valuation
 
-  NoteFin : single; // accumule le rÈsultats de la note final
+  NoteFin : single; // accumule le r√©sultats de la note final
 
 begin
 
-  // Boucle sur chaque Ètudiants
+  // Boucle sur chaque √©tudiants
   for indEtu := low(tabLesEval) to high(tabLesEval) do
   begin
 
     //Initier la note Finale
     NoteFin := 0;
 
-    // Boucle sur chaque Èvaluations
+    // Boucle sur chaque √©valuations
     for indEval := low(TAB_PCT_EVAL) to high(TAB_PCT_EVAL) do
     begin
     
-      //Calcul de la note Final pour un Ètudiant
+      //Calcul de la note Final pour un √©tudiant
       NoteFin := NoteFin + (tabLesEval[indEval][indEtu] * TAB_PCT_EVAL[indEval]);
 
     end; // Fin for indEval
@@ -63,14 +70,14 @@ begin
 end;
 
 Function DeterminerIndNomEleve (NomEleve : String; tableauCh : TStrings) : integer;
-{Objectif : l'indice de l'ÈlËve dont le nom est reÁu en paramËtre. Si on ne
- trouve pas le nom, retourner l'indice du premier ÈlÈment du tableau ñ 1.
- Le tableauCh est par dÈfault Trier.}
+{Objectif : l'indice de l'√©l√®ve dont le nom est re√ßu en param√®tre. Si on ne
+ trouve pas le nom, retourner l'indice du premier √©l√©ment du tableau ‚Äì 1.
+ Le tableauCh est par d√©fault Trier.}
 
 var
-  iMin, // ReprÈsente l'indice du premier ÈlÈment de la section ou chercher
-  iMax, // ReprÈsente l'indice du dernier ÈlÈment de la section ou chercher
-  iMilieu : integer; {ReprÈsente un ÈlÈment probable Èquivalent ‡ la valeur
+  iMin, // Repr√©sente l'indice du premier √©l√©ment de la section ou chercher
+  iMax, // Repr√©sente l'indice du dernier √©l√©ment de la section ou chercher
+  iMilieu : integer; {Repr√©sente un √©l√©ment probable √©quivalent √† la valeur
                       chercher}
 
   Trouver : boolean; {Nous permet de determiner si la valeure chercher est
@@ -81,19 +88,19 @@ begin
   // Initier L'indice Minimum
   iMin := 0;
 
-  // Initier l'indice iMax au dernier ÈlÈment du
+  // Initier l'indice iMax au dernier √©l√©ment du
   iMax := tableauCh.Count-1;
   iMilieu := iMax div 2;
   Trouver := tableauCh[iMilieu] = NomEleve;
 
-  // Parcour tout le tableau j'usquace ce que l'ÈlÈment chercher soi trouver
+  // Parcour tout le tableau j'usquace ce que l'√©l√©ment chercher soi trouver
   while (iMin <= iMax) and not(Trouver) do
   begin
 
     // Reinitier la valeur Milieu
     iMilieu := iMin + iMax div 2;
 
-    // VÈrifier si la valeur ‡ l'indice iMilieu est egal ‡ la valeur chercher
+    // V√©rifier si la valeur √† l'indice iMilieu est egal √† la valeur chercher
     if tableauCh[iMilieu] = NomEleve then
       Trouver := True
     else
@@ -110,51 +117,51 @@ begin
         
   end; // Fin While
 
-  // VÈrifier si le nom chercher ‡ ÈtÈ trouver!
+  // V√©rifier si le nom chercher √† √©t√© trouver!
   if not(Trouver) then
     iMilieu := -1;
 
-  //Renvoyer l'indice de l'Ètudiant
+  //Renvoyer l'indice de l'√©tudiant
   Result := iMilieu;
 
 end;
 
 Procedure CopierTabChDansListe (tabChSource : array of string; ListeCible :
 TStrings);
-{Objectif : Copier tous les ÈlÈments du tableau de chaÓnes reÁus en paramËtre
- dans la liste de chaÓnes cible.}
+{Objectif : Copier tous les √©l√©ments du tableau de cha√Ænes re√ßus en param√®tre
+ dans la liste de cha√Ænes cible.}
 
 Var
   indI : integer;
 
 begin
 
-  // Effacer tout les ÈlÈment dans la liste Cible
+  // Effacer tout les √©l√©ment dans la liste Cible
   ListeCible.Clear;
 
-  // Boucler sur chaque ÈlÈments du tableau Source
+  // Boucler sur chaque √©l√©ments du tableau Source
   for indI := low(tabChSource) to high(tabChSource) do
 
-    // Ajouter chaque ÈlÈment du tableau Source au Liste Cible
+    // Ajouter chaque √©l√©ment du tableau Source au Liste Cible
     ListeCible.Add(tabChSource[indI]);
 
 end;
 
 Procedure TrierTabNoms (var tabUnIndex : TTabUnIndex; tabNomsEleves :
 TTabNomsEleves);
-{Objectif : En utilisant un tri simple I, trier par indirection les ÈlÈments
- d'un tableau de noms d'un groupe d'ÈlËves.}
+{Objectif : En utilisant un tri simple I, trier par indirection les √©l√©ments
+ d'un tableau de noms d'un groupe d'√©l√®ves.}
 
 Var
-  indEtu, // Premier indice d'Ètudiant
-  indEtu2, // Second indice d'Ètudiant
+  indEtu, // Premier indice d'√©tudiant
+  indEtu2, // Second indice d'√©tudiant
   Transit : integer;
 
 begin
 
   Transit := 0;
 
-  // Boucle sur chaque ÈlÈments de tabUnIndex
+  // Boucle sur chaque √©l√©ments de tabUnIndex
   for indEtu := Low(tabUnIndex) to high(tabUnIndex) do
   begin
   
@@ -163,7 +170,7 @@ begin
 
   end; //Fin For indEtu
 
-  // Boucle sur chaque ÈlËves
+  // Boucle sur chaque √©l√®ves
   for indEtu := low(tabNomsEleves) to high(tabNomsEleves) - 1 do
   begin
 
@@ -173,8 +180,8 @@ begin
       if tabNomsEleves[tabUnIndex[indEtu]] > tabNomsEleves[tabUnIndex[indEtu]] then
       begin
 
-       {DÈterminer l'indice de la plus petit valeur et Èchanger dans le tableau
-        avec l'indice du premier ÈlÈment non trier}
+       {D√©terminer l'indice de la plus petit valeur et √©changer dans le tableau
+        avec l'indice du premier √©l√©ment non trier}
         Transit := tabUnIndex[indEtu2];
         tabUnIndex[indEtu2] := tabUnIndex[indEtu];
         tabUnIndex[indEtu] := Transit;
@@ -189,18 +196,18 @@ end;
 
 Procedure TrierTabUneEval (var tabLesIndex : TTabLesIndex;
 tabLesEval : TTabLesEval; indEval : integer);
-{Objectif : En utilisant un tri simple II, trier par indirection les ÈlÈments
- d'un tableau contenant les notes d'une Èvaluation pour un groupe d'ÈlËves.}
+{Objectif : En utilisant un tri simple II, trier par indirection les √©l√©ments
+ d'un tableau contenant les notes d'une √©valuation pour un groupe d'√©l√®ves.}
 
 Var
-  indEtu, // Premier indice d'Ètudiant
-  indEtu2, // Second indice d'Ètudiant
+  indEtu, // Premier indice d'√©tudiant
+  indEtu2, // Second indice d'√©tudiant
 
-  Transit : integer; // Pour effectuer les Èchange d'informations
+  Transit : integer; // Pour effectuer les √©change d'informations
 
 begin
 
-  // VÈrifier si l'indice de l'Èvaluation ‡ trier est valide
+  // V√©rifier si l'indice de l'√©valuation √† trier est valide
   if indEval in [1..NB_EVAL] then
   begin
 
@@ -220,7 +227,7 @@ begin
         if tabLesEval[tabLesIndex[indEval][indEtu]][indEtu] >
            tabLesEval[tabLesIndex[indEval][indEtu2]][indEtu2] then
         begin
-          // DÈterminer l'indice de la plus petit valeur
+          // D√©terminer l'indice de la plus petit valeur
           Transit := tabLesIndex[indEval][indEtu2];
 
           // placer la plus petite valeur trouver non trier
@@ -239,8 +246,8 @@ end;
 
 Procedure TrierTabFinal (var tabLesIndex : TTabLesIndex; tabLesEval :
 TTabLesEval);
-{Objectif : En utilisant un ´Straight Selection Sortª, trier par indirection les
- ÈlÈments d'un tableau contenant les notes finales pour un groupe d'ÈlËves.}
+{Objectif : En utilisant un ¬´Straight Selection Sort¬ª, trier par indirection les
+ √©l√©ments d'un tableau contenant les notes finales pour un groupe d'√©l√®ves.}
 
  // tabLesIndex[5] --> note Finale
  // tabLesEval[4] --> note Finales
@@ -260,7 +267,7 @@ begin
   // Boucle sur chaque etudiants
   for indEtu := low(tabLesEval) to high(tabLesEval) - 1 do
   begin
-    // Initier l'indice du premier ÈlÈment non trier
+    // Initier l'indice du premier √©l√©ment non trier
     iMin := indEtu;
 
     for indEtu2 := indEtu + 1 to high(tabLesEval) do
@@ -277,7 +284,7 @@ begin
 
     end; // Fin For indEtu2
 
-    // Positionner l'ÈlÈment le plus petit non Trier de la note Final
+    // Positionner l'√©l√©ment le plus petit non Trier de la note Final
     Transit := tabLesIndex[NB_EVAL+1][indEtu];
     tabLesIndex[NB_EVAL+1][indEtu] := tabLesIndex[NB_EVAL+1][iMin];
     tabLesIndex[NB_EVAL+1][iMin] := Transit;
@@ -287,35 +294,163 @@ begin
 end;
 
 Procedure MettreAJourLesIndex();
-{Objectif : Mettre ‡ jour le tableau d'index des noms des ÈlËves . Mettre ‡ jour
- le tableau des index des notes des Èvaluations des ÈlËves . Mettre ‡ jour le
- tableau d'index des notes finales des ÈlËves.}
+{Objectif : Mettre √† jour le tableau d'index des noms des √©l√®ves . Mettre √† jour
+ le tableau des index des notes des √©valuations des √©l√®ves . Mettre √† jour le
+ tableau d'index des notes finales des √©l√®ves.}
 
 Var
-  indEvaluation : integer; // Utiliser pour bouvler sur les 4 Èvaluations
+  indEvaluation : integer; // Utiliser pour bouvler sur les 4 √©valuations
 
-  TabNomsEleves : TTabNomsEleves; // Tableau des noms des ÈlËves
+  TabNomsEleves : TTabNomsEleves; // Tableau des noms des √©l√®ves
 
-  TabUnIndex : TTabUnIndex; // Tableau díindex sur les d'ÈlËves
+  TabUnIndex : TTabUnIndex; // Tableau d‚Äôindex sur les d'√©l√®ves
 
-  TabLesIndex : TTabLesIndex; {Tableau de tableaux d'index sur les ÈlËves et des
-                               diffÈrentes faÁons de trier}
+  TabLesIndex : TTabLesIndex; {Tableau de tableaux d'index sur les √©l√®ves et des
+                               diff√©rentes fa√ßons de trier}
 
-  TabLesEval : TTabLesEval; {Tableau des notes des Èvaluations et des notes
-                             finales des ÈlËves}
+  TabLesEval : TTabLesEval; {Tableau des notes des √©valuations et des notes
+                             finales des √©l√®ves}
 
 begin
 
-  // Mettre ‡ jour le tableau d'index des noms des ÈlËves.
+  // Mettre √† jour le tableau d'index des noms des √©l√®ves.
   TrierTabNoms(TabUnIndex, TabNomsEleves);
 
-  //Mettre ‡ jour le tableau des index des notes des Èvaluations des ÈlËves.
+  //Mettre √† jour le tableau des index des notes des √©valuations des √©l√®ves.
   for indEvaluation := 1 to NB_EVAL do
     TrierTabUneEval(TabLesIndex, TabLesEval, indEvaluation);
 
-  //Mettre ‡ jour le tableau d'index des notes finales des ÈlËves.
+  //Mettre √† jour le tableau d'index des notes finales des √©l√®ves.
   TrierTabFinal(TabLesIndex, TabLesEval);
 
+end;
+
+
+function CalculerMoyTabEntPos (TabEnt: array of integer): single;
+//Calculer et retourner la moyenne des √©l√©ments d'un tableau d'entiers
+
+{TODO: Peut etre ajouter une variable de plus (NbEleves) pour contenir
+       compte le nombre d'√©l√©ments du tableau}
+
+var
+  Somme,          //Somme de tous les √©l√©ments
+  indI: integer;  //Infice
+
+begin
+  //Init Somme
+  Somme := 0;     
+
+  //Si le tableau est vide, retourner -1
+  if Length(TabEnt) < 1 then          
+    Result := -1                      
+  else
+    begin
+      //Pacrourir le tableau et ajouter l'√©l√©ment courant √† Somme
+      for indI := Low(TabEnt) to High(TabEnt) do   
+        Somme := Somme + TabEnt[indI];            
+
+
+      //Retourner la moyenne
+      Result := Somme / Length(TabEnt);
+    end;
+end;
+
+
+function CalculerEcartTabEnt (TabEnt: array of integer): single;
+//Calculer et retourner l'√©cart type d'un tableau d'entiers
+
+{TODO: Peut etre ajouter une variable de plus (NbEleves) pour contenir
+       compte le nombre d'√©l√©ments du tableau}
+
+var
+  indI,               //Indice
+  Somme: single;      //Somme de tous les elements
+  Variance: single;   //R√©sultat de la variance
+
+begin
+  //Init Somme
+  Somme := 0;
+
+  //Si le tableau est vide, retourner -1
+  if Length(TabEnt) < 1 then
+    Result := -1
+  else
+    begin
+
+      //Pacrourir le tableau et ajouter l'√©l√©ment courant √† Somme
+      for indI := Low(TabEnt) to High(TabEnt) do
+        Somme := Somme + (TabEnt[indI] - CalculerMoyTabEntPos(TabEnt));
+
+      //Calcul de la variance
+      Variance := Power(Somme, 2) / Length(TabEnt);
+      
+      //Calcul de l'√©cart type
+      Result := Sqrt(Variance);
+    end;
+end;
+
+
+function DeterminerMinTabEntPos (TabEnt: array of integer): integer;
+//Trouver et retourner la valeur min d'un tableau d'entiers
+
+{TODO: Peut etre ajouter une variable de plus (NbEleves) pour contenir
+       compte le nombre d'√©l√©ments du tableau}
+
+var
+  ValMin,            //Valeur min trouv√©e
+  indI: integer;     //Indice
+
+begin
+  //lolwut
+  ValMin := 100;
+  
+  //Si le tableau est vide, retourner -1
+  if Length(TabEnt) < 1 then
+    Result := -1
+  else
+    begin
+
+      //Parcourir le tableau
+      for indI := High(TabEnt) downto Low(TabEnt) do  
+        {Ajouter la valeur si elle est plus petite que la ValMin actuelle}
+        if TabEnt[indI] < ValMin then
+          ValMin := TabEnt[indI];
+
+      //Retourner la valeur min
+      Result := ValMin
+    end;
+end;
+
+
+function DeterminerMaxTabEntPos (TabEnt: array of integer): integer;
+//Trouver et retourner la valeur max d'un tableau d'entiers
+
+{TODO: Peut etre ajouter une variable de plus (NbEleves) pour contenir
+       compte le nombre d'√©l√©ments du tableau}
+
+var
+  ValMax,              //Valeur max trouv√©e
+  indI: integer;       //Indice
+
+begin
+  //Si le tableau est vide, il ne contient que des 0
+  ValMax := 0;  
+
+  //Si le tableau est vide, retourner -1
+  if Length(TabEnt) < 1 then
+    Result := -1
+  else
+    begin
+
+      //Parcourir le tableau
+      for indI := Low(TabEnt) to High(TabEnt) do  
+        {Ajouter la valeur si elle est plus grande que la ValMax actuelle}
+        if TabEnt[indI] > ValMax then
+          ValMax := TabEnt[indI];
+
+      //Retourner la veleur max
+      Result := ValMax
+    end;
 end;
 
 end.
