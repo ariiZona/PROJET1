@@ -10,7 +10,7 @@ type
   TfchOptionsTri = class(TForm)
     lstClesTri: TListBox;
     Label1: TLabel;
-    GroupBox1: TGroupBox;
+    grpOrdresTri: TGroupBox;
     optCroissant: TRadioButton;
     optDecroissant: TRadioButton;
     cmdOK: TButton;
